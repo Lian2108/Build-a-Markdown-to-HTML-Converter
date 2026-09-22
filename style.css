@@ -1,40 +1,299 @@
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    padding: 20px;
+    min-height: 100vh;
+
+    font-family: 'Poppins', sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 15% 30%,
+            rgba(0, 229, 255, 0.12),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(124, 77, 255, 0.18),
+            transparent 35%
+        ),
+        #020617;
+
+    color: white;
+
+    padding: 35px 3%;
 }
+
+
+/* TITLE */
+
+body > h1 {
+    text-align: center;
+
+    font-size: 46px;
+
+    margin-bottom: 55px;
+
+    text-shadow:
+        0 0 10px white,
+        0 0 25px #00e5ff;
+}
+
+body > h1 span {
+    color: #00e5ff;
+
+    text-shadow:
+        0 0 10px #00e5ff,
+        0 0 25px #00e5ff;
+}
+
+
+/* THREE CONVERTER BOXES */
+
+#container {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 30px;
+}
+
+
+/* BOX */
+
+.container {
+    height: 525px;
+
+    padding: 28px 30px;
+
+    border:
+        1px solid
+        rgba(0, 229, 255, 0.35);
+
+    border-radius: 24px;
+
+    background:
+        rgba(255, 255, 255, 0.035);
+
+    backdrop-filter: blur(15px);
+
+    transition: 0.3s;
+}
+
+.container:hover {
+    box-shadow:
+        0 0 30px
+        rgba(0, 229, 255, 0.25);
+}
+
+
+/* HEADINGS */
+
+.container h2 {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    font-size: 24px;
+
+    margin-bottom: 28px;
+}
+
+
+/* CYAN DOT */
+
+.container h2 span {
+    width: 15px;
+    height: 15px;
+
+    border-radius: 50%;
+
+    background: #00e5ff;
+
+    box-shadow:
+        0 0 8px #00e5ff,
+        0 0 18px #00e5ff,
+        0 0 30px #00e5ff;
+}
+
+
+/* INPUT */
 
 #markdown-input {
     width: 100%;
-    height: 100px;
+    height: 400px;
+
+    resize: none;
+
+    padding: 25px;
+
+    border-radius: 15px;
+
+    border:
+        1px solid
+        rgba(0, 229, 255, 0.6);
+
+    outline: none;
+
+    background: #020817;
+
+    color: white;
+
+    font-family:
+        'Courier New',
+        monospace;
+
+    font-size: 16px;
 }
+
+#markdown-input:focus {
+    border-color: #00e5ff;
+
+    box-shadow:
+        0 0 20px
+        rgba(0, 229, 255, 0.3);
+}
+
+#markdown-input::placeholder {
+    color: #64748b;
+}
+
+
+/* RAW HTML and PREVIEW */
 
 #html-output,
 #preview {
-    height: 100px;
-    display: inline-block;
     width: 100%;
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin: auto;
-    white-space: pre-wrap;
-    background-color: #f9f9f9;
+    height: 400px;
+
+    padding: 25px;
+
+    border-radius: 15px;
+
+    border:
+        1px solid
+        rgba(0, 229, 255, 0.35);
+
+    background: #020817;
+
+    overflow: auto;
+
+    color: #e8faff;
+
+    font-size: 16px;
 }
 
-@media (min-width: 600px) {
-    #markdown-input,
-    #html-output,
-    #preview {
-        height: 200px;
-        margin: 0;
+
+/* RAW HTML */
+
+#html-output {
+    white-space: pre-wrap;
+
+    word-break: break-word;
+
+    font-family:
+        'Courier New',
+        monospace;
+}
+
+
+/* PREVIEW */
+
+#preview {
+    background:
+        rgba(40, 38, 70, 0.55);
+}
+
+#preview h1,
+#preview h2,
+#preview h3 {
+    color: white;
+
+    margin-bottom: 15px;
+}
+
+#preview a {
+    color: #00e5ff;
+}
+
+#preview strong {
+    color: white;
+}
+
+#preview em {
+    color: #b8f7ff;
+}
+
+#preview blockquote {
+    border-left:
+        3px solid #00e5ff;
+
+    padding-left: 15px;
+
+    margin: 15px 0;
+
+    color: #bdefff;
+}
+
+#preview img {
+    max-width: 100%;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1000px) {
+
+    #container {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .container:first-child {
+        grid-column: 1 / -1;
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    body {
+        padding: 25px 5%;
+    }
+
+    body > h1 {
+        font-size: 32px;
+
+        margin-bottom: 35px;
     }
 
     #container {
-        display: flex;
-        justify-content: space-evenly;
-        gap: 10px;
+        grid-template-columns: 1fr;
+    }
+
+    .container:first-child {
+        grid-column: auto;
+    }
+
+    .container {
+        height: 430px;
+
+        padding: 22px;
+    }
+
+    .container h2 {
+        font-size: 20px;
+    }
+
+    #markdown-input,
+    #html-output,
+    #preview {
+        height: 320px;
     }
 }

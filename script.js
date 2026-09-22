@@ -3,62 +3,53 @@ const htmlOutput = document.getElementById("html-output");
 const preview = document.getElementById("preview");
 
 function convertMarkdown() {
-    let markdown = markdownInput.value;
+  let markdown = markdownInput.value;
 
-    // Headings
-    markdown = markdown.replace(/^### (.+)$/gm, "<h3>$1</h3>");
-    markdown = markdown.replace(/^## (.+)$/gm, "<h2>$1</h2>");
-    markdown = markdown.replace(/^# (.+)$/gm, "<h1>$1</h1>");
+  // Headings
+  markdown = markdown.replace(/^###### (.+)$/gm, "<h6>$1</h6>");
 
-    // Images
-    markdown = markdown.replace(
-        /!\[([^\]]*)\]\(([^)]+)\)/g,
-        '<img alt="$1" src="$2">'
-    );
+  markdown = markdown.replace(/^##### (.+)$/gm, "<h5>$1</h5>");
 
-    // Links
-    markdown = markdown.replace(
-        /\[([^\]]+)\]\(([^)]+)\)/g,
-        '<a href="$2">$1</a>'
-    );
+  markdown = markdown.replace(/^#### (.+)$/gm, "<h4>$1</h4>");
 
-    // Bold
-    markdown = markdown.replace(
-        /\*\*(.*?)\*\*/g,
-        "<strong>$1</strong>"
-    );
+  markdown = markdown.replace(/^### (.+)$/gm, "<h3>$1</h3>");
 
-    markdown = markdown.replace(
-        /__(.*?)__/g,
-        "<strong>$1</strong>"
-    );
+  markdown = markdown.replace(/^## (.+)$/gm, "<h2>$1</h2>");
 
-    // Italic
-    markdown = markdown.replace(
-        /\*(.*?)\*/g,
-        "<em>$1</em>"
-    );
+  markdown = markdown.replace(/^# (.+)$/gm, "<h1>$1</h1>");
 
-    markdown = markdown.replace(
-        /_(.*?)_/g,
-        "<em>$1</em>"
-    );
+  // Images
+  markdown = markdown.replace(
+    /!\[([^\]]*)\]\(([^)]+)\)/g,
+    '<img alt="$1" src="$2">',
+  );
 
-    // Blockquotes
-    markdown = markdown.replace(
-        /^> (.+)$/gm,
-        "<blockquote>$1</blockquote>"
-    );
+  // Links
+  markdown = markdown.replace(
+    /\[([^\]]+)\]\(([^)]+)\)/g,
+    '<a href="$2">$1</a>',
+  );
 
-    return markdown;
+  // Bold
+  markdown = markdown.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+
+  markdown = markdown.replace(/__(.*?)__/g, "<strong>$1</strong>");
+
+  // Italic
+  markdown = markdown.replace(/\*(.*?)\*/g, "<em>$1</em>");
+
+  markdown = markdown.replace(/_(.*?)_/g, "<em>$1</em>");
+
+  // Blockquote
+  markdown = markdown.replace(/^> (.+)$/gm, "<blockquote>$1</blockquote>");
+
+  return markdown;
 }
 
 markdownInput.addEventListener("input", function () {
-    const html = convertMarkdown();
+  const html = convertMarkdown();
 
-    // Show raw HTML
-    htmlOutput.textContent = html;
+  htmlOutput.textContent = html;
 
-    // Show rendered HTML
-    preview.innerHTML = html;
+  preview.innerHTML = html;
 });
